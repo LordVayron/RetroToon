@@ -2,7 +2,7 @@
 
 **English** · [Español](#español)
 
-RetroToon is a resizable, always-on-top desktop widget that plays a YouTube cartoon playlist alongside a separate lo-fi/music playlist. It keeps every preference on your computer and includes no playlists, accounts, telemetry, API keys, downloads, or redistributed media.
+RetroToon is a resizable, always-on-top desktop widget that plays two independent YouTube playlists: one on the main screen and another through the music player. Despite the retro cartoon and lo-fi presentation, you can display any public or unlisted YouTube playlist whose videos allow embedding. It keeps every preference on your computer and includes no playlists, accounts, telemetry, API keys, downloads, or redistributed media.
 
 ![RetroToon playing a cartoon with the pixel lo-fi monitor](docs/retrotoon.png)
 
@@ -14,7 +14,7 @@ Download the build for your computer from the repository's **Releases** page:
 - macOS Intel: x64 `.dmg` or `.zip`.
 - macOS Apple Silicon: arm64 `.dmg` or `.zip`.
 
-On first launch, select English or Spanish and paste one public or unlisted YouTube playlist for cartoons and another for music. RetroToon verifies that both links are reachable and contain videos before enabling the player. More playlists can be added, renamed, reordered, selected, imported, or exported from Settings.
+On first launch, select English or Spanish and paste one public or unlisted YouTube playlist for the main screen and another for the music player. These can contain cartoons, music, podcasts, documentaries, or any other embeddable public YouTube videos. RetroToon verifies that both links are reachable and contain videos before enabling the player. More playlists can be added, renamed, reordered, selected, imported, or exported from Settings.
 
 Existing v1.0.2 preferences are migrated in place; playlist links, position, size, volume, and other preferences are preserved.
 
@@ -55,7 +55,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidance and [SECURITY.m
 
 ## Español
 
-RetroToon es un widget de escritorio redimensionable y siempre visible que reproduce una playlist de cartoons de YouTube junto con otra playlist de lo-fi/música. Guarda todas las preferencias localmente y no incluye playlists, cuentas, telemetría, claves API, descargas ni contenido redistribuido.
+RetroToon es un widget de escritorio redimensionable y siempre visible que reproduce dos playlists independientes de YouTube: una en la pantalla principal y otra mediante el reproductor de música. Aunque tiene una presentación retro de cartoons y lo-fi, puedes mostrar cualquier playlist pública o no listada de YouTube cuyos videos permitan la reproducción insertada. Guarda todas las preferencias localmente y no incluye playlists, cuentas, telemetría, claves API, descargas ni contenido redistribuido.
 
 ## Instalación y configuración inicial
 
@@ -65,7 +65,7 @@ Descarga desde **Releases** el archivo correspondiente:
 - macOS Intel: `.dmg` o `.zip` x64.
 - macOS Apple Silicon: `.dmg` o `.zip` arm64.
 
-En el primer inicio, elige inglés o español y pega una playlist pública o no listada de cartoons y otra de música. RetroToon comprueba que ambas sean accesibles y tengan videos antes de habilitar el reproductor. En Settings puedes añadir, renombrar, ordenar, seleccionar, importar y exportar más playlists.
+En el primer inicio, elige inglés o español y pega una playlist pública o no listada para la pantalla principal y otra para el reproductor de música. Pueden contener cartoons, música, podcasts, documentales o cualquier otro video público de YouTube que permita embedding. RetroToon comprueba que ambas sean accesibles y tengan videos antes de habilitar el reproductor. En Settings puedes añadir, renombrar, ordenar, seleccionar, importar y exportar más playlists.
 
 Las preferencias de v1.0.2 se migran sin pérdida: se conservan los enlaces, posición, tamaño, volumen y demás ajustes.
 
