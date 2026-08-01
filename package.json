@@ -1,0 +1,57 @@
+{
+  "name": "retrotoon",
+  "productName": "RetroToon",
+  "version": "1.1.0",
+  "description": "A floating retro cartoon and lo-fi desktop player",
+  "author": "RetroToon",
+  "license": "MIT",
+  "keywords": [
+    "electron",
+    "youtube",
+    "floating-player",
+    "lofi",
+    "retro"
+  ],
+  "engines": {
+    "node": ">=24.15.0"
+  },
+  "main": ".webpack/main",
+  "private": true,
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/dotgothic16": "latest",
+    "@fontsource/ibm-plex-mono": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "latest",
+    "@electron-forge/maker-dmg": "latest",
+    "@electron-forge/maker-squirrel": "latest",
+    "@electron-forge/maker-zip": "latest",
+    "@electron-forge/plugin-fuses": "latest",
+    "@electron-forge/plugin-webpack": "latest",
+    "@electron/fuses": "latest",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "css-loader": "latest",
+    "electron": "latest",
+    "html-webpack-plugin": "latest",
+    "jsdom": "latest",
+    "style-loader": "latest",
+    "ts-loader": "latest",
+    "typescript": "5.9.3",
+    "vitest": "latest"
+  }
+}

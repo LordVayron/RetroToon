@@ -1,0 +1,79 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.15.0
+          cache: npm
+      - id: version
+        shell: bash
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          test "${GITHUB_REF_NAME}" = "v${version}" || { echo "Tag ${GITHUB_REF_NAME} does not match package version ${version}"; exit 1; }
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm audit --omit=dev
+
+  build:
+    needs: validate
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            arch: x64
+            artifact: windows-x64
+          - os: macos-15-intel
+            arch: x64
+            artifact: macos-x64
+          - os: macos-15
+            arch: arm64
+            artifact: macos-arm64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.15.0
+          cache: npm
+      - run: npm ci
+      - run: npm run make -- --arch=${{ matrix.arch }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: |
+            out/make/**/*.exe
+            out/make/**/*.zip
+            out/make/**/*.dmg
+          if-no-files-found: error
+
+  publish:
+    needs: [validate, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          mapfile -d '' files < <(find artifacts -type f \( -name '*.exe' -o -name '*.zip' -o -name '*.dmg' \) -print0)
+          test "${#files[@]}" -eq 6 || { echo "Expected 6 release files, found ${#files[@]}"; printf '%s\n' "${files[@]}"; exit 1; }
+          gh release create "$GITHUB_REF_NAME" "${files[@]}" --repo "$GITHUB_REPOSITORY" --generate-notes --title "RetroToon ${{ needs.validate.outputs.version }}"
